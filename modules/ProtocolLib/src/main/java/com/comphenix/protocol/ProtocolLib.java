@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.comphenix.protocol.utility.PlatformUtil;
 import org.bukkit.Server;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
@@ -190,6 +191,10 @@ public class ProtocolLib extends JavaPlugin {
 		if (config.isDetailedErrorReporting()) {
 			detailedReporter.setDetailedReporting(true);
 			logger.warning("Detailed error reporting enabled!");
+		}
+
+		if (PlatformUtil.isGlowstone()) {
+			logger.warning("You are running a Glowstone server: ProtocolLib support is still experimental!");
 		}
 
 		try {
@@ -587,7 +592,7 @@ public class ProtocolLib extends JavaPlugin {
 	private void checkUpdates() {
 		// Ignore milliseconds - it's pointless
 		long currentTime = System.currentTimeMillis() / MILLI_PER_SECOND;
-		
+
 		try {
 			long updateTime = config.getAutoLastTime() + config.getAutoDelay();
 

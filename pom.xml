@@ -10,6 +10,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <minorVersion>4.3.1-SNAPSHOT</minorVersion>
     <spigotVersion>1.12-R0.1-SNAPSHOT</spigotVersion>
+    <glowstoneVersion>2017.6.1</glowstoneVersion>
   </properties>
 
   <modules>
@@ -42,6 +43,10 @@
       <id>spigot-repo</id>
       <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
     </repository>
+    <repository>
+      <id>glowstone-repo</id>
+      <url>https://repo.glowstone.net/content/repositories/releases/</url>
+    </repository>
   </repositories>
   
   <dependencies>
@@ -62,6 +67,12 @@
       <groupId>org.spigotmc</groupId>
       <artifactId>spigot</artifactId>
       <version>${spigotVersion}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.glowstone</groupId>
+      <artifactId>glowstone</artifactId>
+      <version>${glowstoneVersion}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>

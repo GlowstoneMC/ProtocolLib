@@ -17,19 +17,18 @@
 
 package com.comphenix.protocol.utility;
 
+import com.comphenix.protocol.ProtocolLibrary;
+import com.google.common.base.Objects;
+import com.google.common.collect.ComparisonChain;
+import com.google.common.collect.Ordering;
+import org.bukkit.Bukkit;
+import org.bukkit.Server;
+
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.bukkit.Bukkit;
-import org.bukkit.Server;
-
-import com.comphenix.protocol.ProtocolLibrary;
-import com.google.common.base.Objects;
-import com.google.common.collect.ComparisonChain;
-import com.google.common.collect.Ordering;
 
 /**
  * Determine the current Minecraft version.
@@ -109,7 +108,7 @@ public class MinecraftVersion implements Comparable<MinecraftVersion>, Serializa
 	 * @param server - the Bukkit server that will be used to examine the MC version.
 	 */
 	public MinecraftVersion(Server server) {
-		this(extractVersion(server.getVersion()));
+		this(extractVersion(PlatformUtil.getMinecraftVersion(server)));
 	}
 
 	/**
@@ -346,7 +345,7 @@ public class MinecraftVersion implements Comparable<MinecraftVersion>, Serializa
 
 	public static MinecraftVersion getCurrentVersion() {
 		if (currentVersion == null) {
-			currentVersion = fromServerVersion(Bukkit.getVersion());
+			currentVersion = fromServerVersion(PlatformUtil.getMinecraftVersion(Bukkit.getServer()));
 		}
 
 		return currentVersion;
